@@ -1,0 +1,188 @@
+gst-fluendo-mp3 (0.10.32.debian-1) unstable; urgency=medium
+
+  * [f7df946] Imported Upstream version 0.10.32.debian
+  * [5dc5a74] Drop GStreamer 0.10 package - 0.10 is deprecated and slated for
+    removal (Closes: #785905)
+
+ -- Iain Lane <laney@debian.org>  Wed, 16 Sep 2015 15:14:05 +0100
+
+gst-fluendo-mp3 (0.10.29.debian-1) unstable; urgency=medium
+
+  * Don't Build-Depend on liboil-dev any more - this is no longer used.
+  * New upstream version 0.10.29.debian
+    + Fixes segfault when reading some invalid files (LP: #1278894)
+
+ -- Iain Lane <laney@debian.org>  Wed, 25 Jun 2014 17:50:05 +0100
+
+gst-fluendo-mp3 (0.10.28.debian-1) unstable; urgency=medium
+
+  * New upstream version 0.10.28.debian
+  * Build with dh-autoreconf instead of autoreconfing when repacking, to make
+    it easier to see the changes vs. upstream.
+  * Standards-Version → 3.9.5, no changes required.
+  * liboil support is removed, drop configure flag.
+  * Update debian/strip-ipp.diff.
+
+ -- Iain Lane <laney@debian.org>  Wed, 25 Jun 2014 13:04:18 +0100
+
+gst-fluendo-mp3 (0.10.23.debian-3) unstable; urgency=low
+
+  * Switch to Debian email address in control.
+  * Don't repeat libs Section field in control.
+  * Bump Standards-Version to 3.9.4; no change required.
+  * Update Homepage to point at
+    http://www.fluendo.com/shop/product/fluendo-mp3-decoder/.
+  * Update copyright with latest license and exact copyright.
+  * Switch to dh instead of cdbs and drop the bdep; much nicer; the resulting
+    changes are:
+    - One less dep as LDFLAGS from dpkg-buildflags are properly passed.
+    - Some useless doc files not being installed (TODO, README, changelog).
+  * Build for both GStreamer 0.10 and 1.0.
+    - Force --with-gstreamer-api= for each build.
+    - Add new gstreamer1.0 package in control.
+    - Install via dh_install and hence drop the removals of .la and .a files.
+
+ -- Loïc Minier <lool@debian.org>  Thu, 05 Sep 2013 21:34:35 +0200
+
+gst-fluendo-mp3 (0.10.23.debian-2) unstable; urgency=low
+
+  [ Steve Langasek ]
+  * Merge Ubuntu Multiarch patch by Steve Langasek, but bump dh bdep to >= 9~.
+    - Build for multiarch.
+    - Bump dependency on libgstreamer0.10-0, and build-dependency on
+      libgstreamer0.10-dev, for proper multiarch support.
+  * Update watch file to version 3 with Debian version mangling and to use
+    .tar.bz2.
+  * New upstream release.
+    - Update debian/strip-ipp.diff patch which expresses the delta to upstream
+      sources; the other delta is removal of src/mp3-ipp.{c,h} and of
+      src/table-dewindow-ipp.h.
+    - Add libgstreamer-plugins-base0.10-dev (>= 0.10.35.2-1~) bdep for
+      gst-audio (specific package version to get multiarch libs).
+
+ -- Loïc Minier <lool@debian.org>  Thu, 05 Sep 2013 21:14:52 +0200
+
+gst-fluendo-mp3 (0.10.15.debian-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 12 Mar 2011 09:08:45 +0100
+
+gst-fluendo-mp3 (0.10.14.debian-1) unstable; urgency=low
+
+  * New upstream release:
+    + debian/strip-ipp.diff:
+      - Updated for the new paths.
+  * debian/control:
+    + Line-wrap control fields.
+  * debian/source/format,
+    debian/compat:
+    + Update to debhelper compat level 7 and source format 3.0 (quilt).
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 23 May 2010 10:02:35 +0200
+
+gst-fluendo-mp3 (0.10.12.debian-2) unstable; urgency=low
+
+  * debian/strip-ipp.diff:
+    + Actually drop the deleted sources from the diff too...
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 26 Feb 2010 12:48:06 +0100
+
+gst-fluendo-mp3 (0.10.12.debian-1) unstable; urgency=low
+
+  [ Loïc Minier ]
+  * Add XB-GStreamer-* fields to binary package; thanks Michael Vogt.
+
+  [ Sebastian Dröge ]
+  * New upstream release:
+    + Regenerated automake/autoconf files (Closes: #558559).
+  * debian/strip-ipp.diff:
+    + Add patch applied to the upstream sources to strip the non-free IPP
+      from the sources.
+  * debian/control:
+    + Updating Standards-Version to 3.8.4.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 26 Feb 2010 12:36:32 +0100
+
+gst-fluendo-mp3 (0.10.7.debian-1) unstable; urgency=low
+
+  * New upstream release:
+    + debian/patches/01_small-mp3-frames.patch:
+      - Dropped, merged upstream.
+  * debian/control:
+    + Require gstreamer >= 0.10.14. It's not explicitely required upstream
+      but having it enables some more features.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 25 Feb 2008 11:49:03 +0100
+
+gst-fluendo-mp3 (0.10.6.debian-2) unstable; urgency=low
+
+  * debian/rules:
+    + Set GST_REGISTRY before the dh_gstscancodecs call to save the registry
+      somewhere on buildds without writable home and speed things up a bit.
+  * debian/patches/01_small-mp3-frames.patch:
+    + Fix decoding of small MP3 frames, like 8kbps frames with MPEG 2/2.5.
+      Patch taken from upstream SVN (Closes: #465978).
+  * debian/control:
+    + Update Standards-Version to 3.7.3, no additional changes needed.
+    + Use Homepage field.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 20 Feb 2008 08:46:45 +0100
+
+gst-fluendo-mp3 (0.10.6.debian-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules,
+    debian/control:
+    + Call dh_gstscancodecs to generate the codecs database.
+  * debian/control,
+    debian/rules:
+    + Build depend on liboil0.3-dev and use it.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 31 Jul 2007 06:41:55 +0200
+
+gst-fluendo-mp3 (0.10.5.debian-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Loic Minier <lool@dooz.org>  Sat, 12 May 2007 12:06:58 +0200
+
+gst-fluendo-mp3 (0.10.4.debian-2) unstable; urgency=low
+
+  * debian/control:
+    + Updated to use my debian.org mail address
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon,  8 Jan 2007 01:44:57 +0100
+
+gst-fluendo-mp3 (0.10.4.debian-1) unstable; urgency=low
+
+  [ Sebastian Dröge ]
+  * New upstream release
+  * debian/control,
+    debian/compat:
+    + Update to debhelper compat level 5
+    + Update to Standards-Version 3.7.2
+
+  [ Loic Minier ]
+  * New upstream release.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 11 Dec 2006 16:01:35 +0100
+
+gst-fluendo-mp3 (0.10.2.debian-1) unstable; urgency=low
+
+  * New upstream releases.
+    - Update copyright year.
+      [debian/copyright]
+
+ -- Loic Minier <lool@dooz.org>  Sat, 29 Apr 2006 11:58:08 +0200
+
+gst-fluendo-mp3 (0.10.0.debian-1) unstable; urgency=low
+
+  * New gst-fluendo-mp3 source package derived from gstreamer0.10-ffmpeg.
+  * Initial upload to Debian. (Closes: #349693)
+  * Fix typo in copyright.
+    [debian/copyright]
+  * Don't ship *.a and *.la versions of the plugin.
+    [debian/rules]
+
+ -- Loic Minier <lool@dooz.org>  Tue, 24 Jan 2006 20:24:41 +0100
